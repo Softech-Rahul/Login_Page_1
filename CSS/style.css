@@ -1,0 +1,278 @@
+*{
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+    font-family: 'poppins',sans-serif;
+}
+:root{
+    --primary-color:#162938;
+    --secondary-color:aliceblue;
+}
+body{
+    display: flex;
+    justify-content: center;
+    align-items:  center;
+    min-height: 100vh;
+    background-image: url(/Image/background.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+
+}
+header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 20px 100px ;
+    
+    display: flex;
+    flex-direction: row;
+    justify-content:space-between ;
+    align-items: center;
+    z-index: 99;
+}
+.logo{
+    font-size: 2em;
+    color: var(--secondary-color);
+    /* with the help of this user-select property we can restrict the client side user for selection the content from we page */
+    user-select: none; 
+
+}
+.navigation a {
+    position: relative;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    text-decoration: none;
+    font-weight: 500;
+    margin-left: 40px;
+
+}
+/* This is focus pseduo class property */
+/* .navigation a:focus{
+    color:blue;
+} */
+.navigation a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -5px;
+    width: 100%;
+    height: 3px;
+    background: var(--secondary-color);
+    border-radius: 5px;
+
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform 0.5s ;
+       
+}
+/* This is :focus pseudo class property. */
+/* .navigation a:focus::after{
+    background-color: blue;
+} */
+
+.navigation a:hover::after{
+    transform-origin: left;
+    transform: scaleX(1);
+
+}
+.navigation .btnLogin-popup{
+    width: 130px;
+    height: 50px;
+    background: transparent;
+    border: 2px solid var(--secondary-color);
+    /* for set the border outlines */
+    outline: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+    font-weight:500;
+    margin-left: 40px;
+    transition: 0.5s;
+    
+}
+.navigation .btnLogin-popup:hover{
+    background-color: var(--secondary-color);
+    color: black;
+}
+/*  This focus pseduo class property is used for set property when we click on that element or content. */
+
+/* .navigation .btnLogin-popup:focus{
+    color:blue;
+} */
+.wrapper{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: transparent;
+    /* this properties blur the background */
+    backdrop-filter:blur(100px);
+    border: 2px solid rgba(255,255,255,0.5);
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5);
+    transform: scale(0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden; 
+    transition: transform 0.5s ease,height 0.2s ease;  
+}
+.wrapper.active-popup{
+    transform: scale(1);
+}
+.wrapper.active{
+    height: 520px;
+}
+.wrapper .form-box{
+    width: 100%;
+    padding: 40px;
+}
+.wrapper .form-box h2{
+    font-size: 2em;
+    color: var(--primary-color);
+    text-align: center;
+}
+.wrapper .form-box.login{
+    transition: transform 0.20s ease;
+    transform: translateX(0);
+}
+.wrapper.active .form-box.login{
+    transition: none;
+    transform: translateX(-400px);
+
+}
+.wrapper .form-box.registrartion{
+
+    position: absolute;
+    transform: translateX(400px);
+}
+.wrapper.active .form-box.registrartion{
+    transition: transform 0.2s ease;
+    transform: translateX(0);
+}
+
+.icon-close{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 45px;
+    height: 45px;
+    background-color: var(--primary-color);
+    font-size: 1.5em;
+    color: var(--secondary-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom-left-radius: 20px;
+    cursor: pointer;
+    z-index: 1;
+    transition: 0.2s;
+}
+.icon-close:hover{
+    font-size: 2em;
+}
+.input-box{
+    position: relative;
+    width: 100%;
+    height: 50px;
+    border-bottom: 2px solid var(--primary-color);
+    margin: 30px 0;
+}
+.input-box label{
+    position: absolute;
+    top: 50%;
+    left: 5px;
+    transform: translateY(-50%);
+    font-size: 1em;
+    color: var(--primary-color);
+    font-weight: 500;
+    /* This property is used for disable the pointer click event process */
+    pointer-events: none;
+    transition: 0.5s;
+}
+/* input:focus - This property is used for focusing in input text field 
+   input:valid - This property is used for validate in input text field */
+.input-box input:focus~label,
+.input-box input:valid~label
+/* .input-box input:invalid~label, */
+{
+   top: -5px; 
+}
+.input-box input{
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    border: none;
+    outline: none;
+    font-size: 1em;
+    color:var(--primary-color);
+    font-weight: 600;
+    padding: 0 35px 0 5px ;
+}
+
+.input-box .icon{
+    position: absolute;
+    right: 8px;
+    font-size: 1.2em;
+    color:var(--primary-color);
+    line-height: 57px;
+}
+.remember-forget{
+    font-size: 0.9em;
+    color: var(--primary-color);
+    font-weight: 500;
+    margin:-15px 0 15px ;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.remember-forget label input{
+    accent-color: var(--primary-color);
+    margin-right: 3px;
+}
+.remember-forget a{
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 500;
+}
+.remember-forget a:hover{
+    text-decoration: underline;
+}
+.btn{
+    width: 100%;
+    height: 40px;
+    background-color:var(--primary-color);
+    border: none;
+    outline: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font: 1em;
+    color: var(--secondary-color);
+    font-weight: 600;
+    transition: 0.3s;
+}
+.btn:hover{
+    font-size:1.1em ;
+    background-color: var(--primary-color);
+
+}
+.login-register{
+    font-size: 0.9em;
+    color: var(--primary-color);
+    text-align: center;
+    margin: 25px 0 10px;
+}
+.login-register p a{
+    color:var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+
+}
+.login-register p a:hover{
+    text-decoration: underline;
+}
+
+
+
